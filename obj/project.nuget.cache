@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Y5fUFT86bm9yiK17uEj65JamO9y/HUawYYkXPbnDjM+WCDcG221Hgp5ob7skeB1r1qd94jhu2kSrFhLwC+FADQ==",
+  "success": true,
+  "projectFilePath": "/Users/michaelberndbeier/src/blogCodeStuff/secretsantafsharp/secretsantafsharp.fsproj",
+  "expectedPackageFiles": [
+    "/Users/michaelberndbeier/.nuget/packages/fsharp.core/5.0.0/fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
