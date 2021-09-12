@@ -19,16 +19,17 @@ let calcIndexRelative numberOfParticipants participant offset =
     let fittingOffset = if (combinedOffset >= numberOfParticipants) then combinedOffset - numberOfParticipants else combinedOffset // "warp around"
     ((baseAddress + fittingOffset) % numberOfParticipants)
 
+let isListInvalid (indexList: IndexPairing seq) =  indexList |> Seq.exists( fun indexPairing -> (indexPairing.SenderIndex.Equals( indexPairing.ReceiverIndex)))
 
-let calcIndexList numberOfParticipants = 
+let rec calcIndexList numberOfParticipants = 
     let random = System.Random()
     let offset = random.Next(1, (numberOfParticipants - 1))
-    [1 .. numberOfParticipants] |> Seq.map (fun index -> {SenderIndex=(index - 1);ReceiverIndex=( calcIndexRelative numberOfParticipants index offset)})
+    let indexList = [1 .. numberOfParticipants] |> Seq.map (fun index -> {SenderIndex=(index - 1);ReceiverIndex=( calcIndexRelative numberOfParticipants index offset)})
+    if (isListInvalid indexList) then (calcIndexList numberOfParticipants) else indexList
 
+let calcPairingList participants = calcIndexList (testParticipants |> Seq.length) |> Seq.map (fun indexPairing -> indexPairingToPair (indexPairing, testParticipants))
 
 [<EntryPoint>]
 let main argv = 
-    let indexPairs = calcIndexList (testParticipants |> Seq.length)
-    let converted = indexPairs |> Seq.map (fun indexPairing -> indexPairingToPair (indexPairing, testParticipants))
-    printfn "%A" converted
+    printfn "%A" (calcPairingList testParticipants)
     0
