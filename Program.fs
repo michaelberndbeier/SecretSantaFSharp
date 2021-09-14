@@ -5,7 +5,6 @@ type SenderReceiverPairing = {Sender:ParticipantDetails; Receiver:ParticipantDet
 type IndexPairing = {SenderIndex:int;ReceiverIndex:int;} 
 
 let testParticipants = [|{Name="Michael"}; {Name="Alice"}; {Name="Bob"}; 
-                   {Name="Charlie"};
                    {Name="Charlie"}; {Name="Elise"}; {Name="Fiona"};
                    {Name="George"}; {Name="Hanna"}; {Name="Ida"}; 
                    {Name="Julian"}; {Name="Luise"};{Name="Kilian"}; |]
